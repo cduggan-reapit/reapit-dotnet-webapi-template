@@ -3,7 +3,7 @@
 /// <summary>
 /// Helper methods for working with checksums
 /// </summary>
-public class ChecksumHelper
+public static class ChecksumHelper
 {
     /// <summary>
     /// Generates a cryptographic hash value for a given string

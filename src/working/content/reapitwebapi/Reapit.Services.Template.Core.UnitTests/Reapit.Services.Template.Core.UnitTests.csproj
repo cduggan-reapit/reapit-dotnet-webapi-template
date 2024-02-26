@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Reapit.Services.Template.Core\Reapit.Services.Template.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Examples\" />
+  </ItemGroup>
+
 </Project>
