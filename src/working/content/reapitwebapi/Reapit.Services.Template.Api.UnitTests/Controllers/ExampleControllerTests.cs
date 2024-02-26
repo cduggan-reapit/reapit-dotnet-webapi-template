@@ -354,47 +354,6 @@ public class ExampleControllerTests
         sut.GetEtag().Should().BeEquivalentTo(example.GetEtag());
     }
     
-    /*/    
-    /// <summary>
-    /// Apply a set of changes to an Example
-    /// </summary>
-    /// <param name="id">Unique identifier of the Example</param>
-    /// <param name="patchDocument">The changes to apply to the Example</param>
-    /// <param name="etag">The entity tag of the Example</param>
-    [HttpPatch("{id}")]
-    [SwaggerRequestExample(typeof(JsonPatchDocument<ExampleWriteDto>), typeof(ExampleWriteDtoPatchExample))]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType<NotFoundErrorModel>(StatusCodes.Status404NotFound)]
-    [ProducesResponseType<ConflictErrorModel>(StatusCodes.Status412PreconditionFailed)]
-    [ProducesResponseType<ValidationErrorModel>(StatusCodes.Status422UnprocessableEntity)]
-    [ProducesResponseType<ApplicationErrorModel>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> PatchExample(string id, [FromBody] JsonPatchDocument<ExampleWriteDto> patchDocument, [FromHeader(Name = "If-Match")] string etag)
-    {
-        try
-        {
-            var entityPatchDocument = _mapper.Map<JsonPatchDocument<Example>>(patchDocument);
-            
-            var command = new PatchExampleCommand(id, etag, entityPatchDocument);
-            var updated = await _mediator.Send(command);
-            
-            SetEtagHeader(updated.GetEtag());
-            
-            return Ok(updated);
-        }
-        catch (ValidationException ex)
-        {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, ValidationErrorModel.FromException(ex));
-        }
-        catch (NotFoundException ex)
-        {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, NotFoundErrorModel.FromException(ex));
-        }
-        catch (ConflictException ex)
-        {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, ConflictErrorModel.FromException(ex));
-        }
-    }*/
-    
     // Private Methods
 
     private ExampleController CreateSut()
