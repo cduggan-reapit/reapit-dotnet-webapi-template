@@ -8,6 +8,8 @@
   
   <ItemGroup>
     <InternalsVisibleTo Include="Reapit.Services.Template.Api.UnitTests" />
+    <InternalsVisibleTo Include="Reapit.Services.Template.Core.UnitTests" />
+    <InternalsVisibleTo Include="Reapit.Services.Template.Domain.UnitTests" />
   </ItemGroup>
 
 </Project>

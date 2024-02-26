@@ -29,7 +29,8 @@
                 "Reapit.Services.Template.Api/Models/Examples/*",
                 "Reapit.Services.Template.Api.UnitTests/Controllers/ExampleControllerTests.cs",
                 "Reapit.Services.Template.Core/UseCases/Examples/**/*",
-                "Reapit.Services.Template.Domain/Entities/Examples/*"
+                "Reapit.Services.Template.Domain/Entities/Examples/*",
+                "Reapit.Services.Template.Domain.UnitTests/Entities/Examples/*"
             ]
         }]
     }]
