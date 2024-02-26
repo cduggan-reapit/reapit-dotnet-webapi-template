@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Examples\" />
+    <Reference Include="Reapit.Packages.ErrorHandling">
+      <HintPath>..\..\..\..\..\..\error-handling\src\Reapit.Packages.ErrorHandling\bin\Debug\net8.0\Reapit.Packages.ErrorHandling.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

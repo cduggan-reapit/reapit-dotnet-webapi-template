@@ -8,6 +8,8 @@ public class CreateExampleCommandValidator : AbstractValidator<CreateExampleComm
     public CreateExampleCommandValidator()
     {
         RuleFor(cmd => cmd.Name)
+            .Must(name => !string.IsNullOrWhiteSpace(name))
+            .WithMessage(ValidationMessages.ValueRequired)
             .MaximumLength(Constants.NameMaximumLength)
             .WithMessage(ValidationMessages.ValueExceedsMaximumLengthOf(Constants.NameMaximumLength));
 

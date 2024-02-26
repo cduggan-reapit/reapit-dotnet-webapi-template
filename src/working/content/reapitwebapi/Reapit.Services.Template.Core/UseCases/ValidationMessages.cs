@@ -7,6 +7,8 @@ public static class ValidationMessages
     public const string ValueMustBeGreaterThanZero = "Value must be greater than zero";
     
     public const string ValueMustBeUnique = "Value must be unique";
+
+    public const string ValueRequired = "Value must be provided";
     
     // Methods
     
