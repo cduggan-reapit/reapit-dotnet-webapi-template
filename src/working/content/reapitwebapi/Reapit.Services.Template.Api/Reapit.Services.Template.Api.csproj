@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- NETSDK1206 relates to a runtime identifier in the framework dependency that we don't use -->
+    <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Reapit.Services.Template.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Reapit.Services.Template.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Reapit.Packages.Paging" Version="3.1.0" />
+    <PackageReference Include="Reapit.Packages.Swagger" Version="3.1.9" />
+    <PackageReference Include="Reapit.Packages.WebHost.Test" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <InternalsVisibleTo Include="Reapit.Services.Template.Api.UnitTests" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Reapit.Services.Template.Core\Reapit.Services.Template.Core.csproj" />
+    <ProjectReference Include="..\Reapit.Services.Template.Domain\Reapit.Services.Template.Domain.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="Reapit.Packages.ErrorHandling">
+      <HintPath>..\..\..\..\..\error-handling\src\Reapit.Packages.ErrorHandling\bin\Debug\net8.0\Reapit.Packages.ErrorHandling.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
