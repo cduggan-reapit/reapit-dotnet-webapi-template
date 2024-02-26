@@ -27,6 +27,7 @@
                 "Reapit.Services.Template.Api/Infrastructure/Swagger/RequestExamples/*",
                 "Reapit.Services.Template.Api/Infrastructure/Swagger/ResponseExamples/*",
                 "Reapit.Services.Template.Api/Models/Examples/*",
+                "Reapit.Services.Template.Api.UnitTests/Controllers/ExampleControllerTests.cs",
                 "Reapit.Services.Template.Core/UseCases/Examples/**/*",
                 "Reapit.Services.Template.Domain/Entities/Examples/*"
             ]

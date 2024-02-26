@@ -68,7 +68,7 @@ public class ExampleController : BaseController
         }
         catch (ValidationException ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, ValidationErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status422UnprocessableEntity, ValidationErrorModel.FromException(ex));
         }
     }
     
@@ -156,11 +156,11 @@ public class ExampleController : BaseController
         }
         catch (NotFoundException ex)
         {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, NotFoundErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status404NotFound, NotFoundErrorModel.FromException(ex));
         }
         catch (ConflictException ex)
         {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, ConflictErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status412PreconditionFailed, ConflictErrorModel.FromException(ex));
         }
     }
     
@@ -184,11 +184,11 @@ public class ExampleController : BaseController
         }
         catch (NotFoundException ex)
         {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, NotFoundErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status404NotFound, NotFoundErrorModel.FromException(ex));
         }
         catch (ConflictException ex)
         {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, ConflictErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status412PreconditionFailed, ConflictErrorModel.FromException(ex));
         }
     }
 
@@ -216,7 +216,7 @@ public class ExampleController : BaseController
             
             SetEtagHeader(updated.GetEtag());
             
-            return Ok(updated);
+            return NoContent();
         }
         catch (ValidationException ex)
         {
@@ -224,11 +224,11 @@ public class ExampleController : BaseController
         }
         catch (NotFoundException ex)
         {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, NotFoundErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status404NotFound, NotFoundErrorModel.FromException(ex));
         }
         catch (ConflictException ex)
         {
-            return StatusCode(StatusCodes.Status422UnprocessableEntity, ConflictErrorModel.FromException(ex));
+            return StatusCode(StatusCodes.Status412PreconditionFailed, ConflictErrorModel.FromException(ex));
         }
     }
 }
