@@ -42,6 +42,9 @@ public class Example : IBaseEntity
     /// <summary>
     /// Placeholder collection to allow example queries and commands to read a collection
     /// </summary>
+    /// <remarks>
+    /// This is just placeholder data to let us test the endpoints.  This should be replaced with a data layer or api definition.
+    /// </remarks>
     public static readonly Example[] SeedData =
     [
         new Example { Id = "10ac6339-23f8-42c0-87c0-8d7f8980f36a", Name = "Sarina Emely", Date = new DateTime(1990, 2, 7), Created = SystemTimeProvider.Now, Modified = SystemTimeProvider.Now },
