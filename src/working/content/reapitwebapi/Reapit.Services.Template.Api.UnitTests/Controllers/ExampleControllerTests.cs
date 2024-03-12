@@ -10,6 +10,9 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.JsonPatch.Exceptions;
+using Microsoft.AspNetCore.JsonPatch.Operations;
+using Reapit.Packages.ErrorHandling.Errors;
 using Reapit.Packages.ErrorHandling.Exceptions;
 using Reapit.Packages.ErrorHandling.Providers;
 using Reapit.Services.Template.Api.UnitTests.TestHelpers;
@@ -335,6 +338,27 @@ public class ExampleControllerTests
 
         response.Should().NotBeNull();
         response!.StatusCode.Should().Be(422);
+    }
+    
+    [Fact]
+    public async Task PatchExample_ReturnsUnprocessableEntity_WhenPatchDocumentInvalid()
+    {
+        using var timeContext = new DateTimeOffsetProviderContext(DateTimeOffset.UnixEpoch);
+        
+        var patchError = new JsonPatchError("example", new Operation { op = "replace", path = "/date", value = "none" }, "The value 'none' is invalid for target location.");
+        var exception = new JsonPatchException(patchError);
+        
+        _mediator.Send(Arg.Any<PatchExampleCommand>())
+            .ThrowsAsync(exception);
+
+        var expected = ApplicationErrorModel.FromException(exception);
+
+        var sut = CreateSut();
+        var response = await sut.PatchExample(string.Empty, new JsonPatchDocument<ExampleWriteDto>(), string.Empty) as ObjectResult;
+
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be(422);
+        response.Value.Should().BeEquivalentTo(expected);
     }
     
     [Fact]

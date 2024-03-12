@@ -1,12 +1,25 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.JsonPatch.Exceptions;
 using Reapit.Packages.ErrorHandling.Exceptions;
 using Reapit.Services.Template.Core.Helpers;
 using Reapit.Services.Template.Domain.Entities.Examples;
 
 namespace Reapit.Services.Template.Core.UseCases.Examples.PatchExample;
 
+/// <summary>
+/// Handler for the <see cref="PatchExampleCommand"/> command
+/// </summary>
 public class PatchExampleCommandHandler : IRequestHandler<PatchExampleCommand, Example>
 {
+    /// <summary>
+    /// Handles the <see cref="PatchExampleCommand"/> request
+    /// </summary>
+    /// <param name="request">The request</param>
+    /// <param name="cancellationToken">The cancellation token</param>
+    /// <returns>The updated <see cref="Example"/> object</returns>
+    /// <exception cref="NotFoundException">Thrown when the requested entity is not found</exception>
+    /// <exception cref="ConflictException">Thrown when the requested entity concurrency check fails</exception>
+    /// <exception cref="JsonPatchException">Thrown when the patch document contains an invalid data type (e.g. assigning a non-date value to a date field)</exception>
     public async Task<Example> Handle(PatchExampleCommand request, CancellationToken cancellationToken)
     {
         // Fetch the entity

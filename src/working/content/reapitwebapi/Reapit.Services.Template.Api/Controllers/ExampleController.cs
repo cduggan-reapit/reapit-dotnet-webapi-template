@@ -2,6 +2,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.JsonPatch.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Reapit.Packages.ErrorHandling.Errors;
 using Reapit.Packages.ErrorHandling.Exceptions;
@@ -210,17 +211,21 @@ public class ExampleController : BaseController
         try
         {
             var entityPatchDocument = _mapper.Map<JsonPatchDocument<Example>>(patchDocument);
-            
+
             var command = new PatchExampleCommand(id, etag, entityPatchDocument);
             var updated = await _mediator.Send(command);
-            
+
             SetEtagHeader(updated.GetEtag());
-            
+
             return NoContent();
         }
         catch (ValidationException ex)
         {
             return StatusCode(StatusCodes.Status422UnprocessableEntity, ValidationErrorModel.FromException(ex));
+        }
+        catch (JsonPatchException ex)
+        {
+            return StatusCode(StatusCodes.Status422UnprocessableEntity, ApplicationErrorModel.FromException(ex));
         }
         catch (NotFoundException ex)
         {
