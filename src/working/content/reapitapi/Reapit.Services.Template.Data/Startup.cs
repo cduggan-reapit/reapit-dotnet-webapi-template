@@ -13,18 +13,17 @@ public static class Startup
     /// Configure services required for the data layer
     /// </summary>
     /// <param name="services">The service collection</param>
+    /// <param name="configuration">The applications configuration properties</param>
     public static IServiceCollection AddDataServices(IServiceCollection services, IConfiguration configuration)
     {
         #if (isDynamoDataLayer)
-        
         // Register IOptions<DynamoDbConfiguration>
         services.Configure<DynamoDbConfiguration>(configuration.GetSection(key: DynamoDbConfiguration.Key));
+        
         // Register DynamoDbServices
         
         #elif (isMysqlDataLayer)
-        
-        // Register DbContext
-        
+        // Register DbContext & DbContextFactory
         #endif
         
         return services;

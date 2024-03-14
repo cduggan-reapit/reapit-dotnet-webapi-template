@@ -42,9 +42,33 @@
                     "description": "Do not include a data project"
                 }
             ]
+        },
+        "isDynamoDataLayer":{
+            "type": "computed",
+            "value": "(dataLayer == \"dynamo\")"
+        },
+        "isMysqlDataLayer":{
+            "type": "computed",
+            "value": "(dataLayer == \"mysql\")"
+        }
+        ,
+        "isNoDataLayer":{
+            "type": "computed",
+            "value": "(dataLayer == \"none\")"
         }
     },
     "sources":[{
+        "include": [
+            "**/*"
+        ],
+        "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json"
+        ],
         "modifiers": [{
             "condition": "(!includeExample)",
             "exclude": [ 
@@ -57,6 +81,28 @@
                 "Reapit.Services.Template.Core.UnitTests/UseCases/Examples/**/*",
                 "Reapit.Services.Template.Domain/Entities/Examples/*",
                 "Reapit.Services.Template.Domain.UnitTests/Entities/Examples/*"
+            ]
+        },
+        {
+            "condition": "(isDynamoDataLayer)",
+            "exclude": [
+                "Reapit.Services.Template.Data/Database/**",
+                "Reapit.Services.Template.Data.UnitTests/Database/**"
+            ]
+        },
+        {
+            "condition": "(isMysqlDataLayer)",
+            "exclude": [
+                "Reapit.Services.Template.Data/Dynamo/**",
+                "Reapit.Services.Template.Data.UnitTests/Dynamo/**",
+                "Reapit.Services.Template.Api/appsettings.Dynamo.json"
+            ]
+        },
+        {
+            "condition": "(isNoDataLayer)",
+            "exclude": [
+                "Reapit.Services.Template.Data/**",
+                "Reapit.Services.Template.Data.UnitTests/**"
             ]
         }]
     }]
