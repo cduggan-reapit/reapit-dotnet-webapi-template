@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Reapit",
+    "classifications": [ "Web", "Service", "Cloud" ], 
+    "name": "Reapit Dotnet API Template",
+    "identity": "Reapit.Template.Api",         
+    "groupIdentity":"Reapit.Template",
+    "shortName": "reapitapi",
+    "tags": {
+      "language": "C#",
+      "type":"project"
+    },
+    "sourceName": "Template",
+    "preferNameDirectory":true,
+    "symbols":{
+        "includeExample": {
+            "type": "parameter",
+            "datatype": "bool",
+            "description": "Flag indicating whether to include example controllers and use cases",
+            "defaultValue": "true"
+        },
+        "dataLayer": {
+            "type": "parameter",
+            "description": "",
+            "datatype": "choice",
+            "allowMultipleValues": false,
+            "defaultValue": "none",
+            "choices": [
+                { 
+                    "choice": "mysql", 
+                    "displayName": "MySQL",
+                    "description": "Include MySQL data project"
+                },
+                { 
+                    "choice": "dynamo", 
+                    "displayName": "DynamoDB",
+                    "description": "Include DynamoDB data project"
+                },
+                { 
+                    "choice": "none", 
+                    "displayName": "None",
+                    "description": "Do not include a data project"
+                }
+            ]
+        }
+    },
+    "sources":[{
+        "modifiers": [{
+            "condition": "(!includeExample)",
+            "exclude": [ 
+                "Reapit.Services.Template.Api/Controllers/ExampleController.cs",
+                "Reapit.Services.Template.Api/Infrastructure/Swagger/RequestExamples/*",
+                "Reapit.Services.Template.Api/Infrastructure/Swagger/ResponseExamples/*",
+                "Reapit.Services.Template.Api/Models/Examples/*",
+                "Reapit.Services.Template.Api.UnitTests/Controllers/ExampleControllerTests.cs",
+                "Reapit.Services.Template.Core/UseCases/Examples/**/*",
+                "Reapit.Services.Template.Core.UnitTests/UseCases/Examples/**/*",
+                "Reapit.Services.Template.Domain/Entities/Examples/*",
+                "Reapit.Services.Template.Domain.UnitTests/Entities/Examples/*"
+            ]
+        }]
+    }]
+  }
